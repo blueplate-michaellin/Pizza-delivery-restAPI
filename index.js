@@ -93,7 +93,10 @@ app.httpServer = http.createServer(function(req,res) {
 // Define the request router
 app.router = {
   'users' : handlers.users,
-  'order' : handlers.order
+  'signup' : handlers.signUp,
+  'login': handlers.logIn,
+  'menu' : handlers.menu.get,
+  'order' : handlers.orders
 };
 
 // Execute init function

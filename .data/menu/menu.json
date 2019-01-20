@@ -1,0 +1,7 @@
+{
+  "menu": [
+            {"dishName": "cde", "price": 30},
+            {"dishName": "abc", "price": 20},
+            {"dishName": "xyz", "price": 10}
+          ]
+}
