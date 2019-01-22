@@ -11,6 +11,7 @@
  var debug = util.debuglog('server');
  var handlers = require('./lib/handlers');
  var helpers = require('./lib/helpers');
+ var fs = require('fs');
 
  // Declare the app
  var app = {};
@@ -96,7 +97,8 @@ app.router = {
   'signup' : handlers.signUp,
   'login': handlers.logIn,
   'menu' : handlers.menu.get,
-  'order' : handlers.orders
+  'order' : handlers.orders,
+  'test': handlers.test
 };
 
 // Execute init function
