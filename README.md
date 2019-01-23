@@ -41,7 +41,7 @@ Token is generated when user is logged in, Token is required when performing act
 * Response: { "email": "john@xyz.com", "id": "2sdnomkcakh1jcjd6o4w"}
 
 #### Query token GET / locahost:3000/tokens?token=2sdnomkcakh1jcjd6o4w 
-Response: { "email": "john@xyz.com", "id": "2sdnomkcakh1jcjd6o4w"}
+* Response: { "email": "john@xyz.com", "id": "2sdnomkcakh1jcjd6o4w"}
 
 #### Delete token DELETE / locahost:3000/tokens?token=2sdnomkcakh1jcjd6o4w
 
