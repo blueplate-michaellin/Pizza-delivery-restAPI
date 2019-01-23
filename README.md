@@ -46,8 +46,8 @@ Response: { "email": "john@xyz.com", "id": "2sdnomkcakh1jcjd6o4w"}
 #### Delete token DELETE / locahost:3000/tokens?token=2sdnomkcakh1jcjd6o4w
 
 ## Menu
-1. The restaurant's menu is .data/menu/menu.json, which consists of name and price of each dish offers in the menu.
-2. You can use GET / localhost:3000/menu to retrieve the menu
+1. The restaurant's menu is located: .data/menu/menu.json, which consists of name and price of each dish offers in the menu.
+2. You can use GET / localhost:3000/menu to retrieve the menu, with a token in the header.
 
 ## Order
 #### Create Order POST / localhost:3000/orders 
