@@ -98,7 +98,7 @@ app.router = {
   'login': handlers.logIn,
   'menu' : handlers.menu.get,
   'order' : handlers.orders,
-  'test': handlers.test
+  'payment': handlers.payment
 };
 
 // Execute init function
