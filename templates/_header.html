@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <!-- General purpose settings -->
+    <meta charset = "utf-8">
+    <meta http-equiv = "content-language" content="en-us">
+    <base href="{global.baseUrl}" />
+
+    <!-- Meta Tags-->
+    <title>{head.title} | {global.appName}</title>
+    <meta name = "description" content="{head.description}">
+
+    <!-- List the static assest -->
+    <script type="text/javascript" charset="utf-8" src="public/app.js"></script>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css" />
+    <!-- Customised CSS -->
+    <link rel="stylesheet" type="text/css" href="public/app.css" />
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js"></script>
+  </head>
+  <body class = "{body.class}">
+    <!-- Page Wrapper -->
+    <div class = "wrapper">
+
+    <!-- Header -->
+    <div class = "header">
+      <!-- Navigation -->
+      <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+          <ul class="uk-navbar-nav">
+            <li class="uk-active"><a><img id="topNavLogo" src="public/logo.png" alt="dominino pizza"></a></li>
+          </ul>
+        </div>
+        <div class="uk-navbar-right">
+          <ul class="uk-navbar-nav">
+            <li class="uk-active loggedOut"><a href="/">Log In</a></li>
+            <li class="uk-active loggedOut"><a href="/signup">Sign Up</a></li>
+            <li class="uk-active loggedOut"><a href="">Menu</a></li>
+            <li class="uk-active loggedIn"><a href="/order">Order</a></li>
+            <li class="uk-active loggedIn"><a href="">Log Out</a></li>
+            <li><a href=""></a></li>
+          </ul>
+        </div>
+      </nav>
+
+    <!-- Page specific content -->
+    <div class = "content">
