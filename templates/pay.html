@@ -1,0 +1,25 @@
+
+<div class="uk-section">
+  <div class="uk-container">
+    <form class="uk-card uk-card-body uk-width-1-3 uk-container" id="payment" action="/api/payment" method="POST">
+      <fieldset class="uk-fieldset uk-form-stacked">
+        <legend class="uk-legend">Please choose your payment method:</legend>
+
+        <div class="uk-margin">
+          <div uk-alert class="formError"></div>
+        </div>
+
+        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+            <label><input class="uk-radio" type="radio" name="tok_visa" checked> Visa</label>
+            <label><input class="uk-radio" type="radio" name="tok_mastercard"> Master</label>
+        </div>
+
+        <div class ="uk-margin">
+          <button class="uk-button uk-button-default" type="submit" formaction="/orderCancel">cancel order</button>
+          <button class="uk-button uk-button-primary" typ="submit">pay now</button>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>

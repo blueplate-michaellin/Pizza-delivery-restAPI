@@ -11,6 +11,8 @@ app.config = {
   'sessionToken' : false
 };
 
+console.log(app.config.sessionToken);
+
 // AJAX Client (for RESTful API)
 app.client = {}
 
@@ -54,7 +56,8 @@ app.client.request = function(headers,path,method,queryStringObject,payload,call
 
   // If there is a current session token set, add that as a header
   if(app.config.sessionToken){
-    xhr.setRequestHeader("token", app.config.sessionToken.id);
+    console.log(app.config.sessionToken.token);
+    xhr.setRequestHeader("token", app.config.sessionToken.token);
   }
 
   // When the request comes back, handle the response
@@ -81,6 +84,77 @@ app.client.request = function(headers,path,method,queryStringObject,payload,call
   console.log(payload)
   xhr.send(payloadString);
 
+};
+
+// Add to cart button
+app.addToCart = function() {
+  if (document.getElementById("processOrder")) {
+    document.getElementById("pepperoni").addEventListener('click', function () {
+      var dishName = {"dishName": "Pepperoni Pizza"};
+      var payload = {};
+      payload.orders = [];
+      payload.orders.push(dishName);
+      console.log(payload);
+      app.client.request(undefined,'api/orders','POST',undefined,payload, function(statusCode,responsePayload){
+        if (statusCode == 200) {
+          localStorage.set('orderId', responsePayload.orderId);
+          window.location = '/pay';
+        } else {
+          UIkit.modal.confirm(responsePayload.Error).then(function() {
+            window.location = '/shoppingCart'
+          });
+        }
+      });
+    });
+    document.getElementById("Magharitta").addEventListener('click', function () {
+      var dishName = {"dishName": "Magharitta Pizza"};
+      var payload = {};
+      payload.orders = [];
+      payload.orders.push(dishName);
+      console.log(payload);
+      app.client.request(undefined,'api/orders','POST',undefined,payload, function(statusCode,responsePayload){
+        if (statusCode == 200) {
+          window.location = '/pay';
+        } else {
+          UIkit.modal.confirm(responsePayload.Error).then(function() {
+            window.location = '/shoppingCart'
+          });
+        }
+      });
+    });
+    document.getElementById("4-cheese").addEventListener('click', function () {
+      var dishName = {"dishName": "4-Cheese Pizza"};
+      var payload = {};
+      payload.orders = [];
+      payload.orders.push(dishName);
+      console.log(payload);
+      app.client.request(undefined,'api/orders','POST',undefined,payload, function(statusCode,responsePayload){
+        if (statusCode == 200) {
+          window.location = '/pay';
+        } else {
+          UIkit.modal.confirm(responsePayload.Error).then(function() {
+            window.location = '/shoppingCart'
+          });
+        }
+      });
+    });
+    document.getElementById("400-cheese").addEventListener('click', function () {
+      var dishName = {"dishName": "400-Cheese Pizza"};
+      var payload = {};
+      payload.orders = [];
+      payload.orders.push(dishName);
+      console.log(payload);
+      app.client.request(undefined,'api/orders','POST',undefined,payload, function(statusCode,responsePayload){
+        if (statusCode == 200) {
+          window.location = '/pay';
+        } else {
+          UIkit.modal.confirm(responsePayload.Error).then(function() {
+            window.location = '/shoppingCart'
+          });
+        }
+      });
+    });
+  }
 };
 
 
@@ -199,7 +273,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
         document.querySelector("#"+formId+" .formError").style.display = 'block';
 
       } else {
-        console.log('sign up successful, now going to order page')
+
         // If successful, set the token and redirect the user
         app.setSessionToken(newResponsePayload);
         window.location = '/order';
@@ -219,7 +293,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   }
 
   // If the user just deleted their account, redirect them to the account-delete page
-  if(formId == 'accountEdit3'){
+  if(formId == 'payment') {
     app.logUserOut(false);
     window.location = '/account/deleted';
   }
@@ -240,7 +314,6 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
 app.setLoggedInClass = function(add){
   var target = document.querySelector("body");
   if(add){
-    console.log(target.classList.contains('uk-active loggedIn'));
     target.classList.add('loggedIn');
   } else {
     target.classList.remove('loggedIn');
@@ -266,6 +339,7 @@ app.getSessionToken = function(){
     try{
       var token = JSON.parse(tokenString);
       app.config.sessionToken = token;
+      console.log(app.config.sessionToken.token);
       if(typeof(token) == 'object'){
         app.setLoggedInClass(true);
       } else {
@@ -278,6 +352,18 @@ app.getSessionToken = function(){
   }
 };
 
+app.paymentOnLoad = function() {
+  // Get the current page from the body class
+  var bodyClasses = document.querySelector("body").classList;
+  var primaryClass = typeof(bodyClasses[0]) == 'string' ? bodyClasses[0] : false;
+  var queryString = {}
+  queryString.email = localStorage.getItem('token').email;
+  console.log(queryString);
+  if (primaryClass == 'pay') {
+    app.client.request(undefined,'api/orders','GET',queryString,undefined,function(StatusCode,ResponsePayload){
+  }
+}
+
 // Init (bootstrapping)
 app.init = function(){
 
@@ -286,6 +372,8 @@ app.init = function(){
 
   // Get session token
   app.getSessionToken();
+
+  app.addToCart();
 
 };
 

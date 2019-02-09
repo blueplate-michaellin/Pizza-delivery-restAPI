@@ -129,11 +129,12 @@ app.router = {
   'api/users' : handlers.users,
   'api/token' : handlers.token,
   'api/orders': handlers.orders,
+  'api/payment': handlers.payment,
   'signup' : handlers.signUp,
   'login': handlers.logIn,
   'menu' : handlers.menu.get,
   'order' : handlers.order,
-  'payment': handlers.payment,
+  'pay': handlers.pay,
   'public': handlers.public
 };
 

@@ -19,7 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js"></script>
   </head>
-  <body class = "{body.class}">
+  <body class = "{body.class} uk-dark">
     <!-- Page Wrapper -->
     <div class = "wrapper">
 
@@ -29,17 +29,16 @@
       <nav class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left">
           <ul class="uk-navbar-nav">
-            <li class="uk-active"><a><img id="topNavLogo" src="public/logo.png" alt="dominino pizza"></a></li>
+            <li class="uk-active"><a href="/"><img id="topNavLogo" src="public/logo.png" alt="dominino pizza"></a></li>
           </ul>
         </div>
         <div class="uk-navbar-right">
           <ul class="uk-navbar-nav">
-            <li class="uk-active loggedOut"><a href="/">Log In</a></li>
-            <li class="uk-active loggedOut"><a href="/signup">Sign Up</a></li>
-            <li class="uk-active loggedOut"><a href="">Menu</a></li>
-            <li class="uk-active loggedIn"><a href="/order">Order</a></li>
-            <li class="uk-active loggedIn"><a href="">Log Out</a></li>
-            <li><a href=""></a></li>
+            <li class="active loggedOut"><a href="/login">Log In</a></li>
+            <li class="active loggedOut"><a href="/signup">Sign Up</a></li>
+            <li class="active loggedOut"><a href="">Menu</a></li>
+            <li class="active loggedIn"><a href="/order">Order</a></li>
+            <li class="active loggedIn"><a href="">Log Out</a></li>
           </ul>
         </div>
       </nav>

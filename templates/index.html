@@ -1,33 +1,29 @@
-<form class="uk-card uk-card-body uk-width-1-3 uk-container" id="logIn" action="/api/token" method="POST">
-  <fieldset class="uk-fieldset uk-form-stacked">
+<div class="uk-grid-collapse uk-child-width-expand@s uk-text-center" uk-grid>
+  <div>
+    <div
+      class="backdrop uk-flex uk-flex-center uk-background-cover uk-dark"
+      uk-height-viewport="offset-top: true; offset-bottom: true"
+      style="min-height: calc(100vh-200px);"
+      data-src="https://source.unsplash.com/1600x900/?pizza"
+      uk-img>
+    </div>
+  </div>
 
-    <legend class="uk-legend">Log in</legend>
+  <div class="uk-padding-large uk-background-muted">
 
-    <div class="uk-margin">
-      <div class="formError"></div>
+    <div class="uk-dark loggedIn">
+      <h1 class="uk-align-center uk-heading-primary">Welcome back</h1>
+      <p>Get a grip, dude! You shouldn't be here! If you are lazy to walk down to get your pizza, and you don't mind us ripping you off, you can order from us now.</p>
+      <button class="uk-button uk-button-default">order</button>
     </div>
 
-    <div class="uk-margin">
-      <label class="uk-form-label" for="loginEmail">E-mail:</label>
-      <div class="uk-form-controls">
-        <input class="uk-input" id="loginEmail" type="text" name="email" placeholder="john@smith.com">
-      </div>
-    </div>
-
-    <div class="uk-margin">
-    <label class="uk-form-label" for="loginPassword">Password:</label>
-      <div class="uk-form-controls">
-        <input class="uk-input" id="loginPassword" type="password" name="password" placeholder="min. 8 characters">
-      </div>
-    </div>
-
-    <div class="uk-margin">
-      <span>Not a member yet? sign up </span><span><a href="/signup">here</a>
-    </div>
-
-    <div class = "uk-margin">
+    <div class="uk-padding uk-dark uk-container loggedOut" uk-height-viewport="offset-top: true; offset-bottom: true">
+      <h1 class="uk-align-center uk-heading-primary">Pizza for lazy people</h1>
+      <p>If you admit you are lazy, then this pizza joint is the right place for you! We deliver pizza right to your door, but you just have to pay a huge delivery fee to us. Hardworking people are not welcome.</p>
+      <button class="uk-button uk-button-default">Sign up</button>
       <button class="uk-button uk-button-default">Log in</button>
     </div>
 
-  </fieldset>
-</form>
+  </div>
+
+</div>

@@ -1,0 +1,33 @@
+<form class="uk-card uk-card-body uk-width-1-3 uk-container" id="logIn" action="/api/token" method="POST">
+  <fieldset class="uk-fieldset uk-form-stacked">
+
+    <legend class="uk-legend">Log in</legend>
+
+    <div class="uk-margin">
+      <div uk-alert class="formError"></div>
+    </div>
+
+    <div class="uk-margin">
+      <label class="uk-form-label" for="loginEmail">E-mail:</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="loginEmail" type="text" name="email" placeholder="john@smith.com">
+      </div>
+    </div>
+
+    <div class="uk-margin">
+    <label class="uk-form-label" for="loginPassword">Password:</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="loginPassword" type="password" name="password" placeholder="min. 8 characters">
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <span>Not a member yet? sign up </span><span><a href="/signup">here</a>
+    </div>
+
+    <div class = "uk-margin">
+      <button class="uk-button uk-button-default">Log in</button>
+    </div>
+
+  </fieldset>
+</form>
