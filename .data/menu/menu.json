@@ -1,8 +1,8 @@
 {
   "menu": [
-            {"dishName": "Pepperoni Pizza", "price": 40},
-            {"dishName": "Magharitta Pizza", "price": 30},
-            {"dishName": "4-Cheese Pizza", "price": 60},
-            {"dishName": "400-Cheese Pizza", "price": 60}         
+            {"dishName": "Pepperoni Pizza", "price": 4000},
+            {"dishName": "Magharitta Pizza", "price": 3000},
+            {"dishName": "4-Cheese Pizza", "price": 6000},
+            {"dishName": "400-Cheese Pizza", "price": 6000}         
           ]
 }

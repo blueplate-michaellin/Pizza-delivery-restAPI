@@ -38,3 +38,7 @@ body.loggedIn .content .loggedIn {
 body.loggedIn .content .loggedOut {
   display: none;
 }
+
+.hidden {
+  display: none;
+}

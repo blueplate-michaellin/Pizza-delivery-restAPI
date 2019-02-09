@@ -135,6 +135,7 @@ app.router = {
   'menu' : handlers.menu.get,
   'order' : handlers.order,
   'pay': handlers.pay,
+  'paymentSuccess': handlers.paymentSuccess,
   'public': handlers.public
 };
 

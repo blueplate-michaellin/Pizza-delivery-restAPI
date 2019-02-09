@@ -97,7 +97,6 @@ app.addToCart = function() {
       console.log(payload);
       app.client.request(undefined,'api/orders','POST',undefined,payload, function(statusCode,responsePayload){
         if (statusCode == 200) {
-          localStorage.set('orderId', responsePayload.orderId);
           window.location = '/pay';
         } else {
           UIkit.modal.confirm(responsePayload.Error).then(function() {
@@ -294,8 +293,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
 
   // If the user just deleted their account, redirect them to the account-delete page
   if(formId == 'payment') {
-    app.logUserOut(false);
-    window.location = '/account/deleted';
+    window.location = '/paymentSuccess';
   }
 
   // If the user just created a new check successfully, redirect back to the dashboard
@@ -356,11 +354,15 @@ app.paymentOnLoad = function() {
   // Get the current page from the body class
   var bodyClasses = document.querySelector("body").classList;
   var primaryClass = typeof(bodyClasses[0]) == 'string' ? bodyClasses[0] : false;
-  var queryString = {}
-  queryString.email = localStorage.getItem('token').email;
-  console.log(queryString);
   if (primaryClass == 'pay') {
-    app.client.request(undefined,'api/orders','GET',queryString,undefined,function(StatusCode,ResponsePayload){
+
+    var queryString = {
+      "email" : app.config.sessionToken.email
+    }
+
+    app.client.request(undefined,'api/users','GET',queryString,undefined,function(statusCode, responsePayload){
+      document.querySelector('#orderId').value = responsePayload.order
+    });
   }
 }
 
@@ -374,6 +376,8 @@ app.init = function(){
   app.getSessionToken();
 
   app.addToCart();
+
+  app.paymentOnLoad();
 
 };
 

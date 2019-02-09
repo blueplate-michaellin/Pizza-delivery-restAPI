@@ -8,10 +8,13 @@
         <div class="uk-margin">
           <div uk-alert class="formError"></div>
         </div>
+        <div class="uk-margin hidden">
+          <input class="uk-input" id="orderId"  name="orderId" type="text" placeholder="Input" disabled>
+        </div>
 
-        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-            <label><input class="uk-radio" type="radio" name="tok_visa" checked> Visa</label>
-            <label><input class="uk-radio" type="radio" name="tok_mastercard"> Master</label>
+        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid uk-form-controls">
+            <label><input class="uk-radio" type="radio" name="card" value="tok_visa"> Visa</label>
+            <label><input class="uk-radio" type="radio" name="card" value="tok_mastercard"> Master</label>
         </div>
 
         <div class ="uk-margin">
