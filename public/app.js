@@ -99,9 +99,7 @@ app.addToCart = function() {
         if (statusCode == 200) {
           window.location = '/pay';
         } else {
-          UIkit.modal.confirm(responsePayload.Error).then(function() {
-            window.location = '/shoppingCart'
-          });
+          UIkit.modal.alert(responsePayload.Error)
         }
       });
     });
@@ -115,9 +113,7 @@ app.addToCart = function() {
         if (statusCode == 200) {
           window.location = '/pay';
         } else {
-          UIkit.modal.confirm(responsePayload.Error).then(function() {
-            window.location = '/shoppingCart'
-          });
+          UIkit.modal.alert(responsePayload.Error)
         }
       });
     });
@@ -131,9 +127,7 @@ app.addToCart = function() {
         if (statusCode == 200) {
           window.location = '/pay';
         } else {
-          UIkit.modal.confirm(responsePayload.Error).then(function() {
-            window.location = '/shoppingCart'
-          });
+          UIkit.modal.alert(responsePayload.Error)
         }
       });
     });
@@ -147,13 +141,53 @@ app.addToCart = function() {
         if (statusCode == 200) {
           window.location = '/pay';
         } else {
-          UIkit.modal.confirm(responsePayload.Error).then(function() {
-            window.location = '/shoppingCart'
-          });
+          UIkit.modal.alert(responsePayload.Error)
         }
       });
     });
   }
+};
+
+// Bind the logout button
+app.bindLogoutButton = function(){
+  console.log(document.getElementById("logoutButton"));
+  document.getElementById("logoutButton").addEventListener("click", function(e){
+    console.log('clock');
+
+    // Stop it from redirecting anywhere
+    e.preventDefault();
+
+    // Log the user out
+    app.logUserOut();
+
+  });
+};
+
+// Log the user out then redirect them
+app.logUserOut = function(redirectUser){
+  // Set redirectUser to default to true
+  redirectUser = typeof(redirectUser) == 'boolean' ? redirectUser : true;
+  console.log(app.config.sessionToken)
+
+  // Get the current token id
+  var tokenId = typeof(app.config.sessionToken.token) == 'string' ? app.config.sessionToken.token : false;
+
+  // Send the current token to the tokens endpoint to delete it
+  var queryStringObject = {
+    'token' : tokenId
+  };
+  console.log(queryStringObject);
+  app.client.request(undefined,'api/token','DELETE',queryStringObject,undefined,function(statusCode,responsePayload){
+    console.log('operation');
+    // Set the app.config token as false
+    app.setSessionToken(false);
+
+    // Send the user to the logged out page
+    //if(redirectUser){
+    //  window.location = '/loggedOut';
+    //}
+
+  });
 };
 
 
@@ -378,6 +412,8 @@ app.init = function(){
   app.addToCart();
 
   app.paymentOnLoad();
+
+  app.bindLogoutButton();
 
 };
 
