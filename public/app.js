@@ -11,8 +11,6 @@ app.config = {
   'sessionToken' : false
 };
 
-console.log(app.config.sessionToken);
-
 // AJAX Client (for RESTful API)
 app.client = {}
 
@@ -150,7 +148,6 @@ app.addToCart = function() {
 
 // Bind the logout button
 app.bindLogoutButton = function(){
-  console.log(document.getElementById("logoutButton"));
   document.getElementById("logoutButton").addEventListener("click", function(e){
     console.log('clock');
 
@@ -176,10 +173,10 @@ app.logUserOut = function(redirectUser){
   var queryStringObject = {
     'token' : tokenId
   };
-  console.log(queryStringObject);
   app.client.request(undefined,'api/token','DELETE',queryStringObject,undefined,function(statusCode,responsePayload){
-    console.log('operation');
+    localStorage.removeItem('token');
     // Set the app.config token as false
+    window.location = '/loggedOut';
     app.setSessionToken(false);
 
     // Send the user to the logged out page
@@ -315,6 +312,7 @@ app.formResponseProcessor = function(formId,requestPayload,responsePayload){
   }
   // If login was successful, set the token in localstorage and redirect the user
   if(formId == 'login'){
+    console.log('on login form');
     app.setSessionToken(responsePayload);
     window.location = '/order';
   }
@@ -371,7 +369,6 @@ app.getSessionToken = function(){
     try{
       var token = JSON.parse(tokenString);
       app.config.sessionToken = token;
-      console.log(app.config.sessionToken.token);
       if(typeof(token) == 'object'){
         app.setLoggedInClass(true);
       } else {
