@@ -146,10 +146,32 @@ app.addToCart = function() {
   }
 };
 
+// display shopping cart
+app.shoppingCart = function() {
+  if (document.getElementById("shoppingCart")) {
+    // Get the current token id
+    var tokenId = typeof(app.config.sessionToken.token) == 'string' ? app.config.sessionToken.token : false;
+
+    // Send the current token to the tokens endpoint to delete it
+    var email = typeof(app.config.sessionToken.email) == 'string' ? app.config.sessionToken.email :false;
+    var userQueryStringObject = {
+      'email' : email
+    }
+    app.client.request(tokenId,'api/users','GET',userQueryStringObject,undefined, function(statusCode,responsePayload) {
+      var queryStringObject = {
+        'orderId' : responsePayload.order
+      };
+      app.client.request(tokenId,'api/orders','GET',queryStringObject,undefined,function(statusCode,responsePayload) {
+        console.log(statusCode, responsePayload);
+        // PLEASE CONTINUE HERE //
+      })
+    })
+  }
+}
+
 // Bind the logout button
 app.bindLogoutButton = function(){
   document.getElementById("logoutButton").addEventListener("click", function(e){
-    console.log('clock');
 
     // Stop it from redirecting anywhere
     e.preventDefault();
@@ -407,6 +429,8 @@ app.init = function(){
   app.getSessionToken();
 
   app.addToCart();
+
+  app.shoppingCart();
 
   app.paymentOnLoad();
 
