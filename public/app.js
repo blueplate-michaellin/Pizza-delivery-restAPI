@@ -163,9 +163,19 @@ app.shoppingCart = function() {
       };
       app.client.request(tokenId,'api/orders','GET',queryStringObject,undefined,function(statusCode,responsePayload) {
         console.log(statusCode, responsePayload);
-        // PLEASE CONTINUE HERE //
+        tableInsert(responsePayload);
       })
     })
+  }
+  function tableInsert(data) {
+    var table = "";
+    table += "<tr>";
+    for (i in data.orders) {
+      table +="<td>"+ data.orders[i].dishName + "</td>"
+    }
+    table += "</tr>";
+    table += "<tr><td class='uk-text-right'><h3>Total: " + data.totalPrice + "<h3></td></tr>"
+    document.getElementById("tableBody").innerHTML = table;
   }
 }
 
@@ -266,6 +276,7 @@ app.bindForms = function(){
               }
             }
           }
+          console.log(payload);
         }
 
 

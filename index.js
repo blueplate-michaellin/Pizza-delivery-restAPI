@@ -27,7 +27,7 @@
 app.httpServer = http.createServer(function(req,res) {
   // Parse the url
   var parsedUrl = url.parse(req.url, true);
-
+  console.log('parsedUrl', parsedUrl)
   // Get the path
   var path = parsedUrl.pathname;
   var trimmedPath = path.replace(/^\/+|\/+$/g, '');
@@ -42,7 +42,7 @@ app.httpServer = http.createServer(function(req,res) {
   var headers = req.headers;
 
   // Get the payload,if any
-  var decoder = new StringDecoder('utf-8');
+  var decoder = new StringDecoder('utf8');
   var buffer = '';
   req.on('data', function(data) {
       buffer += decoder.write(data);
@@ -57,9 +57,10 @@ app.httpServer = http.createServer(function(req,res) {
 
       // If the request is within the public directory, user the public handler instead
       chosenHandler = trimmedPath.indexOf('public/') > -1 ? handlers.public : chosenHandler;
-      console.log('buffer',buffer)
-      var test = helpers.parseJsonToObject(buffer);
-      console.log('test', test)
+      var test = helpers.parseJsonToObject(buffer)
+      console.log('buffer',buffer);
+      var test2 = JSON.stringify(buffer);
+      console.log('test2', test2);
       var data = {
         'trimmedPath' : trimmedPath,
         'queryStringObject' : queryStringObject,
