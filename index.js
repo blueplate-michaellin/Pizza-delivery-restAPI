@@ -57,7 +57,9 @@ app.httpServer = http.createServer(function(req,res) {
 
       // If the request is within the public directory, user the public handler instead
       chosenHandler = trimmedPath.indexOf('public/') > -1 ? handlers.public : chosenHandler;
-
+      console.log('buffer',buffer)
+      var test = helpers.parseJsonToObject(buffer);
+      console.log('test', test)
       var data = {
         'trimmedPath' : trimmedPath,
         'queryStringObject' : queryStringObject,
